@@ -44,7 +44,11 @@ const userSchema = new mongoose.Schema({
         post : {
             type : mongoose.Schema.Types.ObjectId
         }
-    }]
+    }],
+    about : {
+        type : String,
+        default : ""
+    }
 },{
     timestamps : true
 })

@@ -212,6 +212,22 @@ router.get('/users', auth, async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
+});
+
+// Adding a bio
+router.post('/users/me/about', auth, async (req,res) => {
+    try{
+        const about = req.body.about;
+        req.user.about = about;
+        await req.user.save();
+
+        res.send();
+
+    } catch (error) {
+        res.status(500).send({
+            error : "Internal Server Error !"
+        });
+    }
 })
 
 module.exports = router;

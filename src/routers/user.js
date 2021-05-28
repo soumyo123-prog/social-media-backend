@@ -89,6 +89,9 @@ router.patch('/users/modify/me', auth, async (req, res) => {
         }
 
         Object.keys(req.body).forEach(update => {
+            if (update === 'name') {
+                req.body[update] = req.body[update].toLowerCase();
+            }
             req.user[update] = req.body[update];
         })
         await req.user.save();

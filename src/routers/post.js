@@ -209,4 +209,17 @@ router.patch('/posts/:id/likes', auth, async (req, res) => {
     }
 })
 
+// Show Beginning posts
+router.get('/posts', async (req, res) => {
+    try {
+        const posts = await Post.find({},null,{
+            limit : 6,
+            skip : 0 || Number(req.query.skip)
+        });
+        res.send(posts);
+    } catch (error) {
+        res.status(500).send({ error : "Internal Server Error !"});
+    }
+})
+
 module.exports = router;
